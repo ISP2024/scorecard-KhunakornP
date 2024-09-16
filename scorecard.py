@@ -35,7 +35,7 @@ class Scorecard:
         return sum(self.scores)/max(1,len(self.scores))
 
 
-def print_scores(score_card):
+def print_scores(score_card: Scorecard):
     """Print statistics for the scorecard and the actual scores."""
 
     # What changes to Scorecard are needed in order to make this code work?
@@ -46,7 +46,7 @@ def print_scores(score_card):
         print(score)
 
 
-def ordinal(num):
+def ordinal(num: int) -> str:
     """Return the ordinal value of an integer; works for numbers up to 20.
 
     For examples: ordinal(1) is '1st', ordinal(2) is '2nd'.
