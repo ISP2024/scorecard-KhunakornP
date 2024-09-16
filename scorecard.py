@@ -17,9 +17,10 @@ Observe how the type hint helps it perform static checking.
    Include the type of keys and values.
 
 """
+from typing import Iterable, Sized
 
 
-class Scorecard:
+class Scorecard(Iterable[float], Sized):
     """Accumulate scores and compute their average."""
 
     def __init__(self):
@@ -34,14 +35,24 @@ class Scorecard:
         """Return the average of all scores, 0 if no scores."""
         return sum(self.scores)/max(1,len(self.scores))
 
+    def __iter__(self):
+        """Return the next score in the scorecard"""
+        return iter(self.scores)
+
+    def __len__(self):
+        """
+        Return the length of the scorecard.
+
+        The length of the scorecard is equal to the number of scores in it.
+        """
+        return len(self.scores)
+
 
 def print_scores(score_card: Scorecard):
     """Print statistics for the scorecard and the actual scores."""
 
-    # What changes to Scorecard are needed in order to make this code work?
     print(f"Scorecard contains {len(score_card)} scores.")
     print(f"Min score: {min(score_card)}  Max score: {max(score_card)}.")
-    # What change to Scorecard is needed to make this work?
     for score in score_card:
         print(score)
 
@@ -56,14 +67,13 @@ def ordinal(num: int) -> str:
 
 
 if __name__ == "__main__":
-    # Interactively add scores and print some statistics.
     scorecard = Scorecard()
 
     print("Input 3 scores.")
     for count in range(1,4):
-        score = input(f"input {ordinal(count)} score: ")
+        score = float(input(f"input {ordinal(count)} score: "))
         scorecard.add_score(score)
 
-    print("The average is " + scorecard.average())
+    print("The average is ", scorecard.average())
 
     print_scores(scorecard)
