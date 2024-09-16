@@ -17,7 +17,7 @@ Observe how the type hint helps it perform static checking.
    Include the type of keys and values.
 
 """
-from typing import Iterable, Sized
+from typing import Iterable, Iterator, Sized
 
 
 class Scorecard(Iterable[float], Sized):
@@ -35,11 +35,11 @@ class Scorecard(Iterable[float], Sized):
         """Return the average of all scores, 0 if no scores."""
         return sum(self.scores)/max(1,len(self.scores))
 
-    def __iter__(self):
-        """Return the next score in the scorecard"""
+    def __iter__(self) -> Iterator:
+        """Return an iterator for scores"""
         return iter(self.scores)
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Return the length of the scorecard.
 
