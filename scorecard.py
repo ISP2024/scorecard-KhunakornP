@@ -26,7 +26,7 @@ class Scorecard:
         """Iniiialize a new Scorecard."""
         self.scores = []
 
-    def add_score(self, score):
+    def add_score(self, score: float):
         """Add a score to the Scorecard."""
         self.scores.append(score)
 
